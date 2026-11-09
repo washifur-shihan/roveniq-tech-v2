@@ -12,10 +12,8 @@ const links = [
 export function Logo() {
   return (
     <a href="#top" className="logo" aria-label="Roveniq Technologies home">
-      <img src="/logo.svg" alt="Roveniq" className="logo-img" />
-      <span className="logo-text">
-        Roveniq<span className="grad-text"> Technologies</span>
-      </span>
+      <img src="/r-logo.png" alt="Roveniq R logo" className="logo-img" />
+      <img src="/roveniq-wordmark.png" alt="Roveniq Technologies" className="logo-wordmark" />
     </a>
   );
 }

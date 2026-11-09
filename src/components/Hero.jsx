@@ -31,7 +31,7 @@ export default function Hero() {
             </div>
             <div>
               <div className="stars">★★★★★</div>
-              <small>Trusted by 120+ founders & teams</small>
+              <small>Trusted by 25+ founders & teams</small>
             </div>
           </div>
         </div>

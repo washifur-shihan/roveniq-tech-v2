@@ -2,22 +2,25 @@ import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: 'Roven IT took our idea from a napkin sketch to a live SaaS in seven weeks. The code quality and communication were outstanding.',
-    name: 'Sarah Mitchell',
-    role: 'CEO, Finlytics',
-    color: '#7c5cff',
+    quote:
+      'Roveniq Technologies engineered our clinical platform ahead of schedule with rock-solid reliability. They understood our medical workflows deeply and delivered a fast, secure system our doctors and patients rely on every day.',
+    name: 'Omar Farooq',
+    role: 'Engineer, NiHealth',
+    color: '#2563eb',
   },
   {
-    quote: 'Their AI support agent now handles most of our tickets. It paid for itself in the first month — easily the best investment we made this year.',
-    name: 'David Chen',
-    role: 'Head of Ops, Nova',
-    color: '#22d3ee',
+    quote:
+      'They built our complete auto repair & service management ecosystem from the ground up — online booking, service bay tracking, and automated invoicing. It cut our administrative workload by over 60% in the first month.',
+    name: 'Mobassir Hossain',
+    role: 'CEO, Radiant Auto Repairs',
+    color: '#06b6d4',
   },
   {
-    quote: 'Beautiful design, blazing-fast site and our conversion rate nearly doubled. They genuinely care about business results, not just pixels.',
-    name: 'Amira Hassan',
-    role: 'Founder, Urban Threads',
-    color: '#f472b6',
+    quote:
+      'Collaborating from Japan with the Roveniq engineering team was effortless. Their technical architecture, 60 FPS cross-platform execution, and proactive communication exceeded our highest enterprise standards.',
+    name: 'Nafiu Rahman',
+    role: 'TU IT, Japan',
+    color: '#8b5cf6',
   },
 ];
 
@@ -27,7 +30,8 @@ export default function Testimonials() {
       <div className="container">
         <div className="section-head reveal">
           <span className="eyebrow">Testimonials</span>
-          <h2>Founders <span className="grad-text">love working with us</span></h2>
+          <h2>Founders & leaders <span className="grad-text">trust our engineering</span></h2>
+          <p>Real feedback from engineering leaders and executives across healthcare, automotive and enterprise IT.</p>
         </div>
         <div className="testi-grid">
           {testimonials.map((t, i) => (
@@ -39,7 +43,10 @@ export default function Testimonials() {
                 <span className="avatar" style={{ background: t.color }}>
                   {t.name.split(' ').map((w) => w[0]).join('')}
                 </span>
-                <div><strong>{t.name}</strong><small>{t.role}</small></div>
+                <div>
+                  <strong>{t.name}</strong>
+                  <small>{t.role}</small>
+                </div>
               </figcaption>
             </figure>
           ))}
