@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, MessageCircle, Facebook, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, MessageCircle, Facebook, Linkedin, Loader2, ArrowUpRight } from 'lucide-react';
 
 const services = ['AI Solutions', 'Software Development', 'Business Automation', 'Web & Cloud', 'Mobile App', 'UI/UX Design'];
 
 const EMAIL_TO = 'roveniq.technologies@gmail.com';
 const WHATSAPP_URL = 'https://wa.me/8801759957439?text=Hello%20Roveniq%20Technologies!%20I%20would%20like%20to%20discuss%20a%20project.';
 const FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=61594943630411';
+const LINKEDIN_URL = 'https://www.linkedin.com/in/washifur-rahman/';
 
 export default function Contact() {
   const [selected, setSelected] = useState(['AI Solutions']);
@@ -65,6 +66,26 @@ export default function Contact() {
             <span className="eyebrow">Let's talk</span>
             <h2>Have a project in mind? <span className="grad-text">Let's build it.</span></h2>
             <p>Tell us a bit about what you need. We'll get back to you within one business day with architecture ideas and a clear roadmap.</p>
+
+            <div className="founder-card">
+              <div className="founder-avatar-wrap">
+                <img src="/washifur-avatar.jpg" alt="Washifur Rahman — Founder of Roveniq Technologies" className="founder-avatar" />
+                <span className="founder-status" title="Available for new projects" />
+              </div>
+              <div className="founder-meta">
+                <strong>Washifur Rahman</strong>
+                <span>Full-Stack Engineer &amp; Founder of Roveniq</span>
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="founder-linkedin"
+                >
+                  <Linkedin size={14} /> Connect on LinkedIn <ArrowUpRight size={13} />
+                </a>
+              </div>
+            </div>
+
             <ul className="contact-list">
               <li>
                 <span><Mail size={18} /></span>
@@ -81,6 +102,12 @@ export default function Contact() {
               <li>
                 <span><Phone size={18} /></span>
                 <a href="tel:+8801759957439">+880 1759957439</a>
+              </li>
+              <li>
+                <span><Linkedin size={18} /></span>
+                <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/washifur-rahman
+                </a>
               </li>
               <li><span><MapPin size={18} /></span> Bangladesh · Serving worldwide</li>
             </ul>
@@ -179,11 +206,11 @@ export default function Contact() {
                     placeholder="Tell us about your goals, timeline and anything else we should know…"
                   />
                 </label>
-                <button type="submit" className="btn btn-primary btn-lg btn-block" disabled={submitting}>
+                <button type="submit" className="btn btn-primary contact-submit-btn" disabled={submitting}>
                   {submitting ? (
-                    <>Sending… <Loader2 size={18} className="spin-icon" /></>
+                    <>Sending… <Loader2 size={17} className="spin-icon" /></>
                   ) : (
-                    <>Send message <Send size={18} /></>
+                    <>Send message <Send size={16} /></>
                   )}
                 </button>
                 <div className="form-quick-links">
@@ -191,6 +218,8 @@ export default function Contact() {
                   <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">WhatsApp</a>
                   <span>·</span>
                   <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer">Facebook</a>
+                  <span>·</span>
+                  <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
                   <span>·</span>
                   <a href={`mailto:${EMAIL_TO}`}>Direct Email</a>
                 </div>

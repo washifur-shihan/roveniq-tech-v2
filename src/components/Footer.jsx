@@ -19,7 +19,7 @@ export default function Footer() {
               <a href="https://www.facebook.com/profile.php?id=61594943630411" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={18} /></a>
               <a href="https://wa.me/8801759957439" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><MessageCircle size={18} /></a>
               <a href="mailto:roveniq.technologies@gmail.com" aria-label="Email"><Mail size={18} /></a>
-              <a href="#top" aria-label="LinkedIn"><Linkedin size={18} /></a>
+              <a href="https://www.linkedin.com/in/washifur-rahman/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
             </div>
           </div>
           {cols.map((c) => (
