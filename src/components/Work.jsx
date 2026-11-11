@@ -1,25 +1,56 @@
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, X, Sparkles, CheckCircle2, Layers, Cpu, ShieldCheck, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, X, Sparkles, CheckCircle2, Layers, Cpu, ShieldCheck, ArrowRight, ExternalLink, PlayCircle } from 'lucide-react';
 
 const projects = [
   {
-    title: 'Aurora Algorithm AI',
-    subtitle: 'Enterprise Knowledge & Analytics Platform',
+    title: 'Autoforge AI',
+    subtitle: 'Multi-Agent Code Generation, Self-Repair & Research Engine',
     category: 'AI',
-    desc: 'Autonomous multi-agent enterprise knowledge assistant processing massive PDFs, live SQL & support tickets in 380ms.',
-    result: '380ms latency · 2.1M queries/mo',
+    desc: 'Multi-agent backend engine and web interface for generating project boilerplates, running automation scripts, and compiling PDF research reports from text prompts.',
+    result: '6+ LLM Failover · Self-Repairing',
     gradient: 'linear-gradient(135deg, #2563eb 0%, #06b6d4 55%, #10b981 100%)',
-    mock: 'rag',
-    stack: ['React / Next.js', 'Python FastAPI', 'OpenAI GPT-4o', 'Pinecone Vector DB', 'LangChain', 'Docker'],
+    mock: 'autoforge',
+    liveUrl: 'https://multi-agent-autoforge-ai.onrender.com/',
+    videoUrl: '/autoforge-ai-demo.mov',
+    stack: [
+      'Python',
+      'FastAPI',
+      'Vanilla JS',
+      'Gemini / OpenAI / Claude',
+      'Groq / Mistral / NVIDIA NIM',
+      'Tavily Web Search',
+      'FPDF / ReportLab',
+    ],
     challenge:
-      'The client needed a secure, enterprise-grade AI knowledge assistant capable of processing massive PDF manuals, real-time SQL databases, and internal tickets to answer complex technical queries with ultra-consistent 380ms latency.',
+      'Autoforge AI takes a natural-language prompt, breaks it down into tasks, plans the folder structure, and routes generation across available LLM provider keys. Once code is generated, it writes files to generated_projects/, validates structure, runs a startup check with up to 3 automatic repair attempts if a script crashes, and packages everything into a downloadable .zip archive.',
     solution:
-      'We engineered an autonomous multi-agent pipeline using LangChain, GPT-4o, and Pinecone vector similarity clustering. The frontend delivers real-time token streaming and dynamic executive analytics dashboards.',
+      'Built with FastAPI, Python, and a lightweight vanilla JS frontend served at / with three views: Pipeline runner, direct chat, and an archive of generated projects. Includes a local PreviewAgent that spins up generated Node/Express, static HTML, or Python projects on a free localhost port, plus an automated PDF research report pipeline.',
     results: [
-      '⚡ 380ms average latency across multi-turn vector similarity queries.',
-      '📉 78% reduction in customer support turnaround times.',
-      '📈 2.1M monthly queries processed with 99.98% reliability.',
-      '🛡️ Enterprise-grade SOC2 and RBAC permission isolation.',
+      '🔀 Multi-Provider Routing & Failover: Supports Gemini (default primary), Groq / Grok (xAI), Mistral, OpenAI, Claude & NVIDIA NIM with automatic ProviderFactory failover.',
+      '🛠️ Validation & Self-Repair: ProjectValidator and RuntimeTester check entry points (app.py, main.py, server.js, index.html) and feed tracebacks to AIRepairAgent.',
+      '🖥️ Live Preview Server: Starts and stops local preview servers for generated Node.js, static HTML, or Python apps directly from the UI and exports .zip bundles.',
+      '📄 PDF Report Pipeline: Uses Tavily web search and FPDF / ReportLab to compile deep research prompts into downloadable PDF reports.',
+    ],
+  },
+  {
+    title: 'Dhalif Support AI',
+    subtitle: 'Autonomous Customer Operations & RAG Agent',
+    category: 'AI',
+    desc: 'LLM support agent trained on 10k+ product docs and past tickets, resolving 70% of customer inquiries automatically.',
+    result: '−62% support costs',
+    gradient: 'linear-gradient(135deg, #f472b6, #7c5cff)',
+    mock: 'chat',
+    videoUrl: '/dhilaf-ai-demo.mp4',
+    stack: ['OpenAI GPT-4o', 'LangChain', 'Pinecone', 'Python FastAPI', 'React', 'PostgreSQL'],
+    challenge:
+      'Scaling customer support across global time zones created a 14-hour average ticket backlog and ballooning operational overhead.',
+    solution:
+      'Built a context-aware RAG support agent indexed on 10,000+ help articles and historical resolutions, capable of executing live account actions via secure API tool-calling and seamless human handoff.',
+    results: [
+      '🤖 70% of incoming customer tickets resolved autonomously end-to-end.',
+      '💰 62% reduction in monthly customer support operating costs.',
+      '⚡ Instant 1.4-second first-response time 24/7 across 12 languages.',
+      '📈 96% customer satisfaction score on AI-resolved conversations.',
     ],
   },
   {
@@ -103,26 +134,6 @@ const projects = [
     ],
   },
   {
-    title: 'Dhalif Support AI',
-    subtitle: 'Autonomous Customer Operations & RAG Agent',
-    category: 'AI',
-    desc: 'LLM support agent trained on 10k+ product docs and past tickets, resolving 70% of customer inquiries automatically.',
-    result: '−62% support costs',
-    gradient: 'linear-gradient(135deg, #f472b6, #7c5cff)',
-    mock: 'chat',
-    stack: ['OpenAI GPT-4o', 'LangChain', 'Pinecone', 'Python FastAPI', 'React', 'PostgreSQL'],
-    challenge:
-      'Scaling customer support across global time zones created a 14-hour average ticket backlog and ballooning operational overhead.',
-    solution:
-      'Built a context-aware RAG support agent indexed on 10,000+ help articles and historical resolutions, capable of executing live account actions via secure API tool-calling and seamless human handoff.',
-    results: [
-      '🤖 70% of incoming customer tickets resolved autonomously end-to-end.',
-      '💰 62% reduction in monthly customer support operating costs.',
-      '⚡ Instant 1.4-second first-response time 24/7 across 12 languages.',
-      '📈 96% customer satisfaction score on AI-resolved conversations.',
-    ],
-  },
-  {
     title: 'Urban Threads',
     subtitle: 'High-Velocity Headless Commerce Experience',
     category: 'Web',
@@ -147,23 +158,23 @@ const projects = [
 const filters = ['All', 'AI', 'Software', 'Mobile', 'Web'];
 
 function Mock({ type }) {
-  if (type === 'rag')
+  if (type === 'autoforge')
     return (
       <div className="mock-rag">
         <div className="mr-top">
-          <span className="mr-badge">GPT-4o · Pinecone RAG</span>
-          <span className="mr-latency">⚡ 380ms</span>
+          <span className="mr-badge">FastAPI · Multi-Agent</span>
+          <span className="mr-latency">⚡ Auto-Repair ✓</span>
         </div>
-        <div className="mr-query">“Querying 14,200 PDFs + Live SQL…”</div>
+        <div className="mr-query">“Generate full-stack app + PDF report…”</div>
         <div className="mr-nodes">
-          <div className="mr-node">PDF Manuals</div>
-          <div className="mr-node active">Vector DB</div>
-          <div className="mr-node">SQL Live</div>
+          <div className="mr-node">Planner</div>
+          <div className="mr-node active">AIRepairAgent</div>
+          <div className="mr-node">Preview + ZIP</div>
         </div>
         <div className="mr-bars">
-          <div style={{ width: '92%' }} />
-          <div style={{ width: '76%' }} />
-          <div style={{ width: '84%' }} />
+          <div style={{ width: '94%' }} />
+          <div style={{ width: '82%' }} />
+          <div style={{ width: '88%' }} />
         </div>
       </div>
     );
@@ -270,7 +281,7 @@ export default function Work() {
         <div className="section-head reveal">
           <span className="eyebrow">Selected work</span>
           <h2>Products we're <span className="grad-text">proud of</span></h2>
-          <p>Explore our recent enterprise AI, mobile and SaaS launches — click the arrow on any project to inspect its architecture, stack and verified impact.</p>
+          <p>Explore our recent enterprise AI, mobile and SaaS launches — click the arrow on any project to inspect its architecture, stack, video demo and verified impact.</p>
         </div>
         <div className="filters reveal">
           {filters.map((f) => (
@@ -298,7 +309,14 @@ export default function Work() {
               <div className="work-body">
                 <div className="work-meta">
                   <span className="work-cat">{p.category}</span>
-                  <span className="work-result">{p.result}</span>
+                  <div className="work-meta-right">
+                    {p.videoUrl && (
+                      <span className="work-video-badge">
+                        <PlayCircle size={13} /> Video Demo
+                      </span>
+                    )}
+                    <span className="work-result">{p.result}</span>
+                  </div>
                 </div>
                 <div className="work-title-row">
                   <div>
@@ -318,6 +336,20 @@ export default function Work() {
                   </button>
                 </div>
                 <p>{p.desc}</p>
+
+                {p.liveUrl && (
+                  <div className="work-live-row" onClick={(e) => e.stopPropagation()}>
+                    <a
+                      href={p.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="work-live-link"
+                    >
+                      <ExternalLink size={13} /> Live Demo: {p.liveUrl.replace(/^https?:\/\//, '')}
+                    </a>
+                  </div>
+                )}
+
                 <div className="work-stack-preview">
                   {p.stack.slice(0, 4).map((tech) => (
                     <span key={tech} className="stack-pill">{tech}</span>
@@ -361,6 +393,40 @@ export default function Work() {
             </div>
 
             <div className="project-modal-body">
+              {(activeProject.liveUrl || activeProject.videoUrl) && (
+                <div className="pm-media-bar">
+                  {activeProject.liveUrl && (
+                    <div className="pm-live-box">
+                      <span className="pm-live-label">🌐 Live Deployment</span>
+                      <a
+                        href={activeProject.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="pm-live-url"
+                      >
+                        {activeProject.liveUrl} <ExternalLink size={14} />
+                      </a>
+                    </div>
+                  )}
+                  {activeProject.videoUrl && (
+                    <div className="pm-video-card">
+                      <div className="pm-video-head">
+                        <span><PlayCircle size={15} /> Interactive Demo Walkthrough</span>
+                        <small>Click play to watch</small>
+                      </div>
+                      <video
+                        key={activeProject.videoUrl}
+                        src={activeProject.videoUrl}
+                        controls
+                        playsInline
+                        preload="metadata"
+                        className="pm-video-player"
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div className="pm-section">
                 <h4><Layers size={16} /> Technology Stack</h4>
                 <div className="pm-stack">
@@ -372,7 +438,7 @@ export default function Work() {
 
               <div className="pm-two-col">
                 <div className="pm-box">
-                  <h4><Sparkles size={16} /> Challenge & Scope</h4>
+                  <h4><Sparkles size={16} /> Overview &amp; Architecture</h4>
                   <p>{activeProject.challenge}</p>
                 </div>
                 <div className="pm-box">
@@ -382,7 +448,7 @@ export default function Work() {
               </div>
 
               <div className="pm-section">
-                <h4><ShieldCheck size={16} /> Verified Results</h4>
+                <h4><ShieldCheck size={16} /> Key Features &amp; Verified Results</h4>
                 <ul className="pm-results">
                   {activeProject.results.map((r) => (
                     <li key={r}>
@@ -397,6 +463,16 @@ export default function Work() {
                 <button type="button" className="btn btn-ghost" onClick={() => setActiveProject(null)}>
                   Close
                 </button>
+                {activeProject.liveUrl && (
+                  <a
+                    href={activeProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-ghost"
+                  >
+                    Open Live Demo <ExternalLink size={16} />
+                  </a>
+                )}
                 <a
                   href="#contact"
                   className="btn btn-primary"
