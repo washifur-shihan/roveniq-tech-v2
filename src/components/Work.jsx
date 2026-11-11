@@ -11,7 +11,7 @@ const projects = [
     gradient: 'linear-gradient(135deg, #2563eb 0%, #06b6d4 55%, #10b981 100%)',
     mock: 'autoforge',
     liveUrl: 'https://multi-agent-autoforge-ai.onrender.com/',
-    videoUrl: 'https://media.roveniq.com/autoforge-ai-demo.mov',
+    videoUrl: '/autoforge-ai-demo.mp4',
     stack: [
       'Python',
       'FastAPI',
@@ -416,7 +416,7 @@ export default function Work() {
                       </div>
                       <video
                         key={activeProject.videoUrl}
-                        src={activeProject.videoUrl}
+                        src={`${activeProject.videoUrl}#t=0.1`}
                         controls
                         playsInline
                         preload="metadata"
