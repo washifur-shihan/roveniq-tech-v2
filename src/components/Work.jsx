@@ -11,7 +11,7 @@ const projects = [
     gradient: 'linear-gradient(135deg, #2563eb 0%, #06b6d4 55%, #10b981 100%)',
     mock: 'autoforge',
     liveUrl: 'https://multi-agent-autoforge-ai.onrender.com/',
-    videoUrl: '/autoforge-ai-demo.mov',
+    videoUrl: 'https://media.roveniq.com/autoforge-ai-demo.mov',
     stack: [
       'Python',
       'FastAPI',
