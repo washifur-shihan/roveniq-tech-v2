@@ -27,8 +27,18 @@ export default function Contact() {
     return `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
   };
 
+  const trackMetaLead = (contentName = 'Project Inquiry Form') => {
+    if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+      window.fbq('track', 'Lead', {
+        content_name: contentName,
+        content_category: selected.join(', ') || 'General Inquiry',
+      });
+    }
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
+    trackMetaLead('Project Inquiry Form');
     setSubmitting(true);
     try {
       const response = await fetch(`https://formsubmit.co/ajax/${EMAIL_TO}`, {
@@ -120,6 +130,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-whatsapp"
+                  onClick={() => trackMetaLead('WhatsApp Direct Message')}
                 >
                   <MessageCircle size={18} /> Message on WhatsApp
                 </a>
@@ -128,6 +139,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-facebook"
+                  onClick={() => trackMetaLead('Facebook Direct Message')}
                 >
                   <Facebook size={18} /> Message on Facebook
                 </a>
