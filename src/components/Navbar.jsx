@@ -9,16 +9,16 @@ const links = [
   { href: '#faq', label: 'FAQ' },
 ];
 
-export function Logo() {
+export function Logo({ onClick }) {
   return (
-    <a href="#top" className="logo" aria-label="Roveniq Technologies home">
+    <a href="#top" className="logo" aria-label="Roveniq Technologies home" onClick={onClick}>
       <img src="/r-logo.png" alt="Roveniq R logo" className="logo-img" />
       <img src="/roveniq-wordmark.png" alt="Roveniq Technologies" className="logo-wordmark" />
     </a>
   );
 }
 
-export default function Navbar() {
+export default function Navbar({ onNavigateHome }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -29,21 +29,28 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const handleNav = (e, href) => {
+    setOpen(false);
+    if (onNavigateHome) {
+      onNavigateHome(e, href);
+    }
+  };
+
   return (
     <header className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
       <div className="container nav-inner">
-        <Logo />
+        <Logo onClick={(e) => handleNav(e, '#top')} />
         <nav className={`nav-links ${open ? 'open' : ''}`}>
           {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+            <a key={l.href} href={l.href} onClick={(e) => handleNav(e, l.href)}>
               {l.label}
             </a>
           ))}
-          <a href="#contact" className="btn btn-primary btn-sm nav-cta-mobile" onClick={() => setOpen(false)}>
+          <a href="#contact" className="btn btn-primary btn-sm nav-cta-mobile" onClick={(e) => handleNav(e, '#contact')}>
             Start a project
           </a>
         </nav>
-        <a href="#contact" className="btn btn-primary btn-sm nav-cta">
+        <a href="#contact" className="btn btn-primary btn-sm nav-cta" onClick={(e) => handleNav(e, '#contact')}>
           Start a project <ArrowRight size={16} />
         </a>
         <button className="nav-toggle" onClick={() => setOpen(!open)} aria-label="Toggle menu">
